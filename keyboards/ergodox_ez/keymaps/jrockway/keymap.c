@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_H,KC_J,KC_K,KC_L,KC_SCOLON,GUI_T(KC_QUOTE),
                        KC_BSPACE,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_SFTENT,
                        KC_UP,KC_DOWN,KC_LBRACKET,KC_RBRACKET,KC_PSCREEN,
-                       KC_LALT,KC_ESCAPE,
+                       KC_DEL,KC_ESCAPE,
                        KC_PGUP,KC_PGDOWN,
                        KC_SPACE,KC_SPACE), // big thumb keys
 

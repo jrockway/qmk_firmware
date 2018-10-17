@@ -38,88 +38,88 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_SPACE,KC_SPACE), // big thumb keys
 
   [MODS] = LAYOUT_ergodox(
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT, // big
-                       KC_TRANSPARENT,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,
+                       _______,_______, // big
+                       _______,
 
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_BSLASH,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_LBRACKET,KC_RBRACKET,KC_BSPACE,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_ENTER,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT), // big
+                       _______,_______,_______,_______,_______,_______,KC_BSLASH,
+                       _______,_______,_______,_______,KC_LBRACKET,KC_RBRACKET,KC_BSPACE,
+                       _______,_______,_______,_______,_______,KC_ENTER,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,_______,
+                       _______,_______), // big
 
   [FKEYS] = LAYOUT_ergodox(
-                       KC_TRANSPARENT,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,KC_NUMLOCK,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT, // big
-                       KC_TRANSPARENT,
+                       _______,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,KC_NUMLOCK,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,
+                       _______,_______, // big
+                       _______,
 
                        KC_SCROLLLOCK,KC_F6,KC_F7,KC_F8,KC_F9,KC_F10,KC_F11,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_F12,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_F13,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_F14,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT), // big
+                       _______,_______,_______,_______,_______,_______,KC_F12,
+                       _______,_______,_______,_______,_______,KC_F13,
+                       _______,_______,_______,_______,_______,_______,KC_F14,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,_______,
+                       _______,_______), // big
 
   [MEDIA] = LAYOUT_ergodox(
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT, // big
-                       KC_TRANSPARENT,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,
+                       _______,_______, // big
+                       _______,
 
                        // mpv/media stuff
-                       KC_ESCAPE,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_1,KC_UP,KC_2,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_PGUP,KC_LEFT,KC_DOWN,KC_RIGHT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_PAUSE,KC_PGDOWN,MEH(KC_PGDOWN),MEH(KC_LEFT),MEH(KC_RIGHT),MEH(KC_PGUP),KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT), // big
+                       KC_ESCAPE,_______,_______,_______,_______,_______,_______,
+                       _______,_______,KC_1,KC_UP,KC_2,_______,_______,
+                       KC_PGUP,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,
+                       KC_PAUSE,KC_PGDOWN,MEH(KC_PGDOWN),MEH(KC_LEFT),MEH(KC_RIGHT),MEH(KC_PGUP),_______,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,_______,
+                       _______,_______), // big
 };
 
 
 /* EMPTY
   [X] = LAYOUT_ergodox(
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT, // big
-                       KC_TRANSPARENT,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,
+                       _______,_______, // big
+                       _______,
 
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT,
-                       KC_TRANSPARENT,KC_TRANSPARENT), // big
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,_______,
+                       _______,_______), // big
 */
 
 const uint16_t PROGMEM fn_actions[] = {

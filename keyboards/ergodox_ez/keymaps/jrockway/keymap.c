@@ -50,8 +50,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                        _______,_______,_______,_______,_______,_______,KC_BSLASH,
                        _______,KC_LEFT_PAREN,KC_RIGHT_PAREN,KC_PLUS,KC_MINUS,KC_EQUAL,KC_BSPACE,
-                       KC_LBRACKET,KC_RBRACKET,KC_AMPERSAND,KC_UNDERSCORE,_______,KC_ENTER,
-                       _______,KC_LEFT_CURLY_BRACE,KC_RIGHT_CURLY_BRACE,_______,_______,_______,_______,
+                       KC_LEFT_CURLY_BRACE,KC_RIGHT_CURLY_BRACE,KC_AMPERSAND,KC_UNDERSCORE,_______,KC_ENTER,
+                       _______,KC_LBRACKET,KC_RBRACKET,_______,_______,_______,_______,
                        _______,_______,_______,_______,_______,
                        _______,_______,
                        _______,_______,

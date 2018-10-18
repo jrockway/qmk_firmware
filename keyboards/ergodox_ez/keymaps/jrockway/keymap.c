@@ -6,7 +6,7 @@
 #define BASE 0
 #define FKEYS 1
 #define MEDIA 2
-#define MODS 3
+#define SYMS 3
 
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE, // can always be here
@@ -23,9 +23,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_LCTRL,KC_A,KC_S,KC_D,KC_F,KC_G,
                        KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,KC_B,KC_BSPACE,
                        KC_GRAVE,KC_QUOTE,KC_LEFT,KC_RIGHT,KC_LALT,
-                       KC_APPLICATION,KC_LGUI,
+                       KC_LGUI,KC_ESCAPE,
                        KC_HOME,
-                       LT(MODS,KC_SPACE),KC_SPACE, // big thumb keys
+                       LT(SYMS,KC_SPACE),KC_SPACE, // big thumb keys
                        KC_END,
 
                        KC_5,KC_6,KC_7,KC_8,KC_9,KC_0,KC_MINUS,
@@ -33,11 +33,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_H,KC_J,KC_K,KC_L,KC_SCOLON,GUI_T(KC_QUOTE),
                        KC_BSPACE,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_SFTENT,
                        KC_UP,KC_DOWN,KC_LBRACKET,KC_RBRACKET,KC_PSCREEN,
-                       KC_DEL,KC_ESCAPE,
+                       KC_ESCAPE,KC_DEL,
                        KC_PGUP,KC_PGDOWN,
                        KC_SPACE,KC_SPACE), // big thumb keys
 
-  [MODS] = LAYOUT_ergodox(
+  [SYMS] = LAYOUT_ergodox(
                        _______,_______,_______,_______,_______,_______,_______,
                        _______,_______,_______,_______,_______,_______,_______,
                        _______,_______,_______,_______,_______,_______,
@@ -49,9 +49,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,
 
                        _______,_______,_______,_______,_______,_______,KC_BSLASH,
-                       _______,_______,_______,_______,KC_LBRACKET,KC_RBRACKET,KC_BSPACE,
-                       _______,_______,_______,_______,_______,KC_ENTER,
-                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,KC_LEFT_PAREN,KC_RIGHT_PAREN,KC_PLUS,KC_MINUS,KC_EQUAL,KC_BSPACE,
+                       KC_LBRACKET,KC_RBRACKET,KC_AMPERSAND,KC_UNDERSCORE,_______,KC_ENTER,
+                       _______,KC_LEFT_CURLY_BRACE,KC_RIGHT_CURLY_BRACE,_______,_______,_______,_______,
                        _______,_______,_______,_______,_______,
                        _______,_______,
                        _______,_______,
@@ -99,7 +99,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,_______), // big
 };
 
-
 /* EMPTY
   [X] = LAYOUT_ergodox(
                        _______,_______,_______,_______,_______,_______,_______,
@@ -124,9 +123,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint16_t PROGMEM fn_actions[] = {
   [BASE] = ACTION_LAYER_TAP_TOGGLE(BASE),
-  [MODS] = ACTION_LAYER_TAP_TOGGLE(MODS),
   [FKEYS] = ACTION_LAYER_TAP_TOGGLE(FKEYS),
   [MEDIA] = ACTION_LAYER_TAP_TOGGLE(MEDIA),
+  [SYMS] = ACTION_LAYER_TAP_TOGGLE(SYMS),
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)

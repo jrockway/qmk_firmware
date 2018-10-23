@@ -18,21 +18,21 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_ergodox(
-                       KC_EQUAL,KC_1,KC_2,KC_3,KC_4,KC_5,KC_6,
-                       KC_TAB,KC_Q,KC_W,KC_E,KC_R,KC_T,TG(FKEYS),
+                       KC_ESCAPE,KC_1,KC_2,KC_3,KC_4,KC_5,TG(FKEYS),
+                       KC_TAB,KC_Q,KC_W,KC_E,KC_R,KC_T,KC_EQUAL,
                        KC_LCTRL,KC_A,KC_S,KC_D,KC_F,KC_G,
                        KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,KC_B,KC_BSPACE,
-                       KC_GRAVE,KC_QUOTE,KC_LEFT,KC_RIGHT,KC_LALT,
-                       KC_LGUI,KC_ESCAPE,
+                       KC_GRAVE,KC_LGUI,KC_LEFT,KC_LALT,KC_RIGHT,
+                       KC_INS,KC_ESCAPE,
                        KC_HOME,
                        LT(SYMS,KC_SPACE),KC_SPACE, // big thumb keys
                        KC_END,
 
-                       KC_5,KC_6,KC_7,KC_8,KC_9,KC_0,KC_MINUS,
-                       TG(MEDIA),KC_Y,KC_U,KC_I,KC_O,KC_P,KC_BSLASH,
+                       TG(MEDIA),KC_6,KC_7,KC_8,KC_9,KC_0,KC_BSPACE,
+                       KC_MINUS,KC_Y,KC_U,KC_I,KC_O,KC_P,KC_BSLASH,
                        KC_H,KC_J,KC_K,KC_L,KC_SCOLON,GUI_T(KC_QUOTE),
                        KC_BSPACE,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_SFTENT,
-                       KC_UP,KC_DOWN,KC_LBRACKET,KC_RBRACKET,KC_PSCREEN,
+                       KC_UP,KC_DOWN,KC_LBRACKET,KC_RBRACKET,RCTL_T(KC_PSCREEN),
                        KC_ESCAPE,KC_DEL,
                        KC_PGUP,KC_PGDOWN,
                        KC_SPACE,KC_SPACE), // big thumb keys
@@ -49,17 +49,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,
 
                        _______,_______,_______,_______,_______,_______,KC_BSLASH,
-                       _______,KC_LEFT_PAREN,KC_RIGHT_PAREN,KC_PLUS,KC_MINUS,KC_EQUAL,KC_BSPACE,
-                       KC_LEFT_CURLY_BRACE,KC_RIGHT_CURLY_BRACE,KC_AMPERSAND,KC_UNDERSCORE,_______,KC_ENTER,
-                       _______,KC_LBRACKET,KC_RBRACKET,_______,_______,_______,_______,
+                       _______,_______,KC_LEFT_PAREN,KC_RIGHT_PAREN,KC_PLUS,KC_MINUS,KC_BSPACE,
+                       _______,KC_LEFT_CURLY_BRACE,KC_RIGHT_CURLY_BRACE,KC_AMPERSAND,KC_UNDERSCORE,KC_ENTER,
+                       _______,_______,KC_LBRACKET,KC_RBRACKET,KC_EQUAL,_______,_______,
                        _______,_______,_______,_______,_______,
                        _______,_______,
                        _______,_______,
                        _______,_______), // big
 
   [FKEYS] = LAYOUT_ergodox(
-                       _______,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,KC_NUMLOCK,
-                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,_______,
+                       _______,_______,_______,_______,_______,_______,KC_NUMLOCK,
                        _______,_______,_______,_______,_______,_______,
                        _______,_______,_______,_______,_______,_______,_______,
                        _______,_______,_______,_______,_______,
@@ -68,8 +68,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,_______, // big
                        _______,
 
-                       KC_SCROLLLOCK,KC_F6,KC_F7,KC_F8,KC_F9,KC_F10,KC_F11,
-                       _______,_______,_______,_______,_______,_______,KC_F12,
+                       _______,KC_F6,KC_F7,KC_F8,KC_F9,KC_F10,KC_F11,
+                       KC_SCROLLLOCK,_______,_______,_______,_______,_______,KC_F12,
                        _______,_______,_______,_______,_______,KC_F13,
                        _______,_______,_______,_______,_______,_______,KC_F14,
                        _______,_______,_______,_______,_______,
@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,
 
                        // mpv/media stuff
-                       KC_ESCAPE,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
                        _______,_______,KC_1,KC_UP,KC_2,_______,_______,
                        KC_PGUP,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,
                        KC_PAUSE,KC_PGDOWN,MEH(KC_PGDOWN),MEH(KC_LEFT),MEH(KC_RIGHT),MEH(KC_PGUP),_______,

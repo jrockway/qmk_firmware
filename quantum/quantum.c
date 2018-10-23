@@ -306,13 +306,13 @@ bool process_record_quantum(keyrecord_t *record) {
                 return false;
 #endif
 #ifdef BLUETOOTH_ENABLE
-        case OUT_AUTO:
+            case OUT_AUTO:
                 set_output(OUTPUT_AUTO);
                 return false;
-        case OUT_USB:
+            case OUT_USB:
                 set_output(OUTPUT_USB);
                 return false;
-        case OUT_BT:
+            case OUT_BT:
                 set_output(OUTPUT_BLUETOOTH);
                 return false;
 #endif
@@ -413,7 +413,7 @@ bool process_record_quantum(keyrecord_t *record) {
                 }
 #    endif
                 return false;
-        case RGB_MODE_RAINBOW:
+            case RGB_MODE_RAINBOW:
 #    ifdef RGBLIGHT_EFFECT_RAINBOW_MOOD
                 if ((RGBLIGHT_MODE_RAINBOW_MOOD <= rgblight_get_mode()) && (rgblight_get_mode() < RGBLIGHT_MODE_RAINBOW_MOOD_end)) {
                     rgblight_step();
@@ -467,11 +467,11 @@ bool process_record_quantum(keyrecord_t *record) {
                 rgblight_mode(RGBLIGHT_MODE_RGB_TEST);
 #    endif
                 return false;
-#if defined(BACKLIGHT_ENABLE) && defined(BACKLIGHT_BREATHING)
+#    if defined(BACKLIGHT_ENABLE) && defined(BACKLIGHT_BREATHING)
             case BL_BRTG:
                 backlight_toggle_breathing();
                 return false;
-#endif
+#    endif
         }
     }
 #endif
@@ -618,11 +618,10 @@ bool process_record_quantum(keyrecord_t *record) {
 
         case GRAVE_ESC: {
             /* true if the last press of GRAVE_ESC was shifted (i.e. GUI or SHIFT were pressed), false otherwise.
-            * Used to ensure that the correct keycode is released if the key is released.
-            */
+             * Used to ensure that the correct keycode is released if the key is released.
+             */
             static bool grave_esc_was_shifted = false;
-
-            uint8_t shifted = get_mods() & ((MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT) | MOD_BIT(KC_LGUI) | MOD_BIT(KC_RGUI)));
+            uint8_t     shifted               = get_mods() & ((MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT) | MOD_BIT(KC_LGUI) | MOD_BIT(KC_RGUI)));
 
 #ifdef GRAVE_ESC_ALT_OVERRIDE
             // if ALT is pressed, ESC is always sent
@@ -664,7 +663,19 @@ bool process_record_quantum(keyrecord_t *record) {
             send_keyboard_report();
             return false;
         }
-
+        case KC_SFTENT: {
+            if (record->event.pressed) {
+                scs_timer[1] = timer_read();
+                register_mods(MOD_BIT(KC_RSFT));
+            } else if (timer_elapsed(scs_timer[1]) < TAPPING_TERM) {
+                unregister_mods(MOD_BIT(KC_RSFT));
+                register_code(SFTENT_KEY);
+                unregister_code(SFTENT_KEY);
+            } else {
+                unregister_mods(MOD_BIT(KC_RSFT));
+            }
+            return false;
+        }
     }
 
     return process_action_kb(record);

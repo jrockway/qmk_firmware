@@ -25,7 +25,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_GRAVE,KC_LGUI,KC_LEFT,KC_LALT,KC_RIGHT,
                        KC_INS,KC_ESCAPE,
                        KC_HOME,
-                       LT(SYMS,KC_SPACE),KC_SPACE, // big thumb keys
+                       KC_SPACE,TD(0), // big thumb keys
                        KC_END,
 
                        TG(MEDIA),KC_6,KC_7,KC_8,KC_9,KC_0,KC_BSPACE,
@@ -35,27 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_UP,KC_DOWN,KC_LBRACKET,KC_RBRACKET,RCTL_T(KC_PSCREEN),
                        KC_ESCAPE,KC_DEL,
                        KC_PGUP,KC_PGDOWN,
-                       KC_SPACE,KC_SPACE), // big thumb keys
-
-  [SYMS] = LAYOUT_ergodox(
-                       _______,_______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,
-                       _______,_______,
-                       _______,
-                       _______,_______, // big
-                       _______,
-
-                       _______,_______,_______,_______,_______,_______,KC_BSLASH,
-                       _______,_______,KC_LEFT_PAREN,KC_RIGHT_PAREN,KC_PLUS,KC_MINUS,KC_BSPACE,
-                       _______,KC_LEFT_CURLY_BRACE,KC_RIGHT_CURLY_BRACE,KC_AMPERSAND,KC_UNDERSCORE,KC_ENTER,
-                       _______,_______,KC_LBRACKET,KC_RBRACKET,KC_EQUAL,_______,_______,
-                       _______,_______,_______,_______,_______,
-                       _______,_______,
-                       _______,_______,
-                       _______,_______), // big
+                       TD(1),KC_SPACE), // big thumb keys
 
   [FKEYS] = LAYOUT_ergodox(
                        _______,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,_______,
@@ -125,7 +105,11 @@ const uint16_t PROGMEM fn_actions[] = {
   [BASE] = ACTION_LAYER_TAP_TOGGLE(BASE),
   [FKEYS] = ACTION_LAYER_TAP_TOGGLE(FKEYS),
   [MEDIA] = ACTION_LAYER_TAP_TOGGLE(MEDIA),
-  [SYMS] = ACTION_LAYER_TAP_TOGGLE(SYMS),
+};
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+  [0] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN,KC_LCBR),
+  [1] = ACTION_TAP_DANCE_DOUBLE(KC_RPRN,KC_RCBR),
 };
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)

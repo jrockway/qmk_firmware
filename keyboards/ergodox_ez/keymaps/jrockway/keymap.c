@@ -18,7 +18,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_TAB,KC_Q,KC_W,KC_E,KC_R,KC_T,KC_MINUS,
                        KC_LCTRL,KC_A,KC_S,KC_D,KC_F,KC_G,
                        KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,KC_B,KC_UNDERSCORE,
-                       KC_GRAVE,KC_LGUI,KC_LEFT,KC_LALT,KC_RIGHT,
+                       KC_LGUI,KC_GRAVE,KC_LEFT,KC_LALT,KC_RIGHT,
                        KC_INS,KC_ESCAPE,
                        KC_HOME,
                        KC_SPACE,TD(TD_LB), // big thumb keys

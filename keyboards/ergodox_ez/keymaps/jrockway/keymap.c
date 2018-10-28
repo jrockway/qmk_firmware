@@ -3,6 +3,10 @@
 #include "action_layer.h"
 #include "version.h"
 
+enum custom_keycodes {
+  NOT_EQUAL = SAFE_RANGE,
+};
+
 #define BASE 0
 #define FKEYS 1
 #define MEDIA 2
@@ -25,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_END,
 
                        TG(MEDIA),KC_6,KC_7,KC_8,KC_9,KC_0,KC_BSLASH,
-                       TD(TD_EQUAL),KC_Y,KC_U,KC_I,KC_O,KC_P,KC_BSPACE,
+                       TD(TD_EQUAL),KC_Y,KC_U,KC_I,KC_O,KC_P,NOT_EQUAL,
                        KC_H,KC_J,KC_K,KC_L,KC_SCOLON,KC_QUOTE,
                        KC_BSPACE,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_SFTENT,
                        KC_DOWN,KC_UP,KC_LBRACKET,KC_RBRACKET,RCTL_T(KC_PSCREEN),
@@ -108,6 +112,21 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_RB] = ACTION_TAP_DANCE_DOUBLE(KC_RPRN,KC_RCBR),
   [TD_EQUAL] = ACTION_TAP_DANCE_DOUBLE(KC_EQUAL,KC_PLUS),
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record){
+  if (record->event.pressed) {
+    switch(keycode) {
+    case NOT_EQUAL:
+      if (get_mods() & (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))) {
+        SEND_STRING("!=");
+      } else {
+        SEND_STRING(":=");
+      }
+      return false;
+    }
+  }
+  return true;
+}
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {

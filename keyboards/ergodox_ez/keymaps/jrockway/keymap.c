@@ -23,18 +23,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_LCTRL,KC_A,KC_S,KC_D,KC_F,KC_G,
                        KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,KC_B,KC_UNDERSCORE,
                        KC_LGUI,KC_GRAVE,KC_LEFT,KC_LALT,KC_RIGHT,
-                       KC_INS,KC_ESCAPE,
-                       KC_HOME,
+                       KC_DEL,KC_INS,
+                       KC_PGUP,
                        KC_SPACE,TD(TD_LB), // big thumb keys
-                       KC_END,
+                       KC_PGDOWN,
 
                        TG(MEDIA),KC_6,KC_7,KC_8,KC_9,KC_0,KC_BSLASH,
                        TD(TD_EQUAL),KC_Y,KC_U,KC_I,KC_O,KC_P,NOT_EQUAL,
                        KC_H,KC_J,KC_K,KC_L,KC_SCOLON,KC_QUOTE,
                        KC_BSPACE,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_SFTENT,
                        KC_DOWN,KC_UP,KC_LBRACKET,KC_RBRACKET,RCTL_T(KC_PSCREEN),
-                       KC_ESCAPE,KC_DEL,
-                       KC_PGUP,KC_PGDOWN,
+                       KC_LEFT,KC_RIGHT,
+                       KC_UP,KC_DOWN,
                        TD(TD_RB),KC_SPACE), // big thumb keys
 
   [FKEYS] = LAYOUT_ergodox(

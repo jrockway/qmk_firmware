@@ -4,15 +4,20 @@
 #include "version.h"
 
 enum custom_keycodes {
-  NOT_EQUAL = SAFE_RANGE,
+  MAC_NE = SAFE_RANGE, // "!= "
+  FMT_QUOTE, // %q
+  FMT_DEC, // %d
+  FMT_STR, // %s
+  FMT_VAL, // %v
+  MAC_ERR, // "err "
+  MAC_NIL, // nil
+  MAC_ASSIGN, // := or !=
 };
 
 #define BASE 0
 #define FKEYS 1
-
-#define TD_LB 0
-#define TD_RB 1
-#define TD_EQUAL 3
+#define RAISE 2
+#define LOWER 3
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_ergodox(
@@ -20,20 +25,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_TAB,KC_Q,KC_W,KC_E,KC_R,KC_T,KC_MINUS,
                        KC_LCTRL,KC_A,KC_S,KC_D,KC_F,KC_G,
                        KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,KC_B,KC_UNDERSCORE,
-                       KC_LGUI,KC_GRAVE,KC_LEFT,KC_LALT,KC_RIGHT,
+                       KC_LGUI,KC_GRAVE,KC_LPRN,KC_RPRN,MO(RAISE),
                        KC_DEL,KC_INS,
                        KC_PGUP,
-                       KC_SPACE,TD(TD_LB), // big thumb keys
+                       KC_LALT,KC_SPACE, // big thumb keys
                        KC_PGDOWN,
 
                        KC_PAUSE,KC_6,KC_7,KC_8,KC_9,KC_0,KC_BSLASH,
-                       TD(TD_EQUAL),KC_Y,KC_U,KC_I,KC_O,KC_P,NOT_EQUAL,
+                       KC_EQUAL,KC_Y,KC_U,KC_I,KC_O,KC_P,MAC_ASSIGN,
                        KC_H,KC_J,KC_K,KC_L,KC_SCOLON,KC_QUOTE,
                        KC_BSPACE,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_SFTENT,
-                       KC_DOWN,KC_UP,KC_LBRACKET,KC_RBRACKET,RCTL_T(KC_PSCREEN),
+                       MO(LOWER),KC_PLUS,KC_LBRACKET,KC_RBRACKET,RCTL_T(KC_PSCREEN),
                        KC_LEFT,KC_RIGHT,
                        KC_UP,KC_DOWN,
-                       TD(TD_RB),KC_SPACE), // big thumb keys
+                       KC_BSPACE,KC_SPACE), // big thumb keys
 
   [FKEYS] = LAYOUT_ergodox(
                        _______,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,_______,
@@ -50,6 +55,46 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_SCROLLLOCK,_______,_______,_______,_______,_______,KC_F12,
                        _______,_______,_______,_______,_______,KC_F13,
                        _______,_______,_______,_______,_______,_______,KC_F14,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,_______,
+                       _______,_______), // big
+
+  [RAISE] = LAYOUT_ergodox(
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,
+                       _______,_______, // big
+                       _______,
+
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,KC_CIRCUMFLEX,KC_AMPERSAND,KC_ASTERISK,KC_GRAVE,KC_TILDE,_______,
+                               KC_PERCENT,KC_LCBR,KC_RCBR,KC_LPRN,KC_RPRN,KC_PIPE,
+                       _______,KC_LBRACKET,KC_RBRACKET,KC_LT,KC_GT,KC_QUESTION,KC_ENTER,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,_______,
+                       _______,_______), // big
+
+  [LOWER] = LAYOUT_ergodox(
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,KC_EXCLAIM,KC_AT,KC_HASH,KC_DOLLAR,MAC_NIL,_______,
+                       _______,FMT_QUOTE,FMT_DEC,FMT_STR,FMT_VAL,MAC_NE,
+                       _______,_______,_______,_______,_______,MAC_ERR,_______,
+                       _______,_______,_______,_______,_______,
+                       _______,_______,
+                       _______,
+                       _______,_______, // big
+                       _______,
+
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
                        _______,_______,_______,_______,_______,
                        _______,_______,
                        _______,_______,
@@ -80,23 +125,43 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM fn_actions[] = {
   [BASE] = ACTION_LAYER_TAP_TOGGLE(BASE),
   [FKEYS] = ACTION_LAYER_TAP_TOGGLE(FKEYS),
+  [RAISE] = ACTION_LAYER_TAP_TOGGLE(RAISE),
+  [LOWER] = ACTION_LAYER_TAP_TOGGLE(LOWER),
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-  [TD_LB] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN,KC_LCBR),
-  [TD_RB] = ACTION_TAP_DANCE_DOUBLE(KC_RPRN,KC_RCBR),
-  [TD_EQUAL] = ACTION_TAP_DANCE_DOUBLE(KC_EQUAL,KC_PLUS),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record){
   if (record->event.pressed) {
     switch(keycode) {
-    case NOT_EQUAL:
+    case MAC_ASSIGN:
       if (get_mods() & (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))) {
         SEND_STRING("!=");
       } else {
         SEND_STRING(":=");
       }
+      return false;
+    case MAC_ERR:
+      SEND_STRING("err ");
+      return false;
+    case MAC_NE:
+      SEND_STRING("!= ");
+      return false;
+    case MAC_NIL:
+      SEND_STRING("nil {");
+      return false;
+    case FMT_QUOTE:
+      SEND_STRING("%q");
+      return false;
+    case FMT_DEC:
+      SEND_STRING("%d");
+      return false;
+    case FMT_STR:
+      SEND_STRING("%s");
+      return false;
+    case FMT_VAL:
+      SEND_STRING("%v");
       return false;
     }
   }

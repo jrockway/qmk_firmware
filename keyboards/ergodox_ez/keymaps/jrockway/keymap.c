@@ -9,8 +9,6 @@ enum custom_keycodes {
 
 #define BASE 0
 #define FKEYS 1
-#define MEDIA 2
-#define SYMS 3
 
 #define TD_LB 0
 #define TD_RB 1
@@ -28,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_SPACE,TD(TD_LB), // big thumb keys
                        KC_PGDOWN,
 
-                       TG(MEDIA),KC_6,KC_7,KC_8,KC_9,KC_0,KC_BSLASH,
+                       KC_PAUSE,KC_6,KC_7,KC_8,KC_9,KC_0,KC_BSLASH,
                        TD(TD_EQUAL),KC_Y,KC_U,KC_I,KC_O,KC_P,NOT_EQUAL,
                        KC_H,KC_J,KC_K,KC_L,KC_SCOLON,KC_QUOTE,
                        KC_BSPACE,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_SFTENT,
@@ -56,29 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,_______,
                        _______,_______,
                        _______,_______), // big
-
-  [MEDIA] = LAYOUT_ergodox(
-                       _______,_______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,
-                       _______,_______,
-                       _______,
-                       _______,_______, // big
-                       _______,
-
-                       // mpv/media stuff
-                       _______,_______,_______,_______,_______,_______,_______,
-                       _______,_______,KC_1,KC_UP,KC_2,_______,_______,
-                       KC_PGUP,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,
-                       KC_PAUSE,KC_PGDOWN,MEH(KC_PGDOWN),MEH(KC_LEFT),MEH(KC_RIGHT),MEH(KC_PGUP),_______,
-                       _______,_______,_______,_______,_______,
-                       _______,_______,
-                       _______,_______,
-                       _______,_______), // big
 };
-
 /* EMPTY
   [X] = LAYOUT_ergodox(
                        _______,_______,_______,_______,_______,_______,_______,
@@ -104,7 +80,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM fn_actions[] = {
   [BASE] = ACTION_LAYER_TAP_TOGGLE(BASE),
   [FKEYS] = ACTION_LAYER_TAP_TOGGLE(FKEYS),
-  [MEDIA] = ACTION_LAYER_TAP_TOGGLE(MEDIA),
 };
 
 qk_tap_dance_action_t tap_dance_actions[] = {

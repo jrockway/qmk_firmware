@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LOWER] = LAYOUT_ergodox(
                        _______,_______,_______,_______,_______,_______,_______,
                        _______,KC_EXCLAIM,KC_AT,KC_HASH,KC_DOLLAR,MAC_NIL,_______,
-                       _______,FMT_QUOTE,FMT_DEC,FMT_STR,FMT_VAL,MAC_NE,
+                       _______,FMT_QUOTE,FMT_STR,FMT_DEC,FMT_VAL,MAC_NE,
                        _______,_______,_______,_______,_______,MAC_ERR,_______,
                        _______,_______,_______,_______,TO(CAPS),
                        _______,_______,

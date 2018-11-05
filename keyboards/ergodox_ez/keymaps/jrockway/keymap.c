@@ -18,6 +18,7 @@ enum custom_keycodes {
 #define FKEYS 1
 #define RAISE 2
 #define LOWER 3
+#define CAPS 7
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_ergodox(
@@ -75,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,KC_CIRCUMFLEX,KC_AMPERSAND,KC_ASTERISK,KC_GRAVE,KC_TILDE,_______,
                                KC_PERCENT,KC_LCBR,KC_RCBR,KC_LPRN,KC_RPRN,KC_PIPE,
                        _______,KC_LBRACKET,KC_RBRACKET,KC_LT,KC_GT,KC_QUESTION,KC_ENTER,
-                       _______,_______,_______,_______,_______,
+                       TO(CAPS),_______,_______,_______,_______,
                        _______,_______,
                        _______,_______,
                        _______,_______), // big
@@ -85,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,KC_EXCLAIM,KC_AT,KC_HASH,KC_DOLLAR,MAC_NIL,_______,
                        _______,FMT_QUOTE,FMT_DEC,FMT_STR,FMT_VAL,MAC_NE,
                        _______,_______,_______,_______,_______,MAC_ERR,_______,
-                       _______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,TO(CAPS),
                        _______,_______,
                        _______,
                        _______,_______, // big
@@ -99,6 +100,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,_______,
                        _______,_______,
                        _______,_______), // big
+
+  [CAPS] = LAYOUT_ergodox(
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,TO(BASE),
+                       _______,_______,
+                       _______,
+                       KC_SPACE,KC_SPACE, // big
+                       _______,
+
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,
+                       _______,_______,_______,_______,_______,_______,_______,
+                       TO(BASE),_______,_______,_______,_______,
+                       _______,_______,
+                       _______,_______,
+                       KC_SPACE,KC_SPACE), // big
 };
 /* EMPTY
   [X] = LAYOUT_ergodox(
@@ -127,6 +148,10 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record){
   if (record->event.pressed) {
+    if (biton32(layer_state) == CAPS && (keycode < KC_A || keycode > KC_Z) && (keycode != KC_UNDERSCORE)) {
+      layer_clear();
+      return true;
+    }
     switch(keycode) {
     case MAC_ASSIGN:
       if (get_mods() & (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))) {
@@ -174,13 +199,30 @@ void matrix_scan_user(void) {
 
 };
 
+uint8_t caps_on = 0;
+
 // Runs whenever there is a layer state change.
 uint32_t layer_state_set_user(uint32_t state) {
   ergodox_board_led_off();
   ergodox_right_led_1_off();
   ergodox_right_led_2_off();
   ergodox_right_led_3_off();
+
   uint8_t layer = biton32(state);
+  if (layer == CAPS) {
+    if (!caps_on) {
+      caps_on = 1;
+      add_key(KC_CAPS);
+      send_keyboard_report();
+    }
+  } else {
+    if (caps_on) {
+      caps_on = 0;
+      add_key(KC_CAPS);
+      send_keyboard_report();
+    }
+  }
+
   if (layer & 1) {
     ergodox_right_led_3_on();
   }

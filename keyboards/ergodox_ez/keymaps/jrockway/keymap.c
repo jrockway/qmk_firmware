@@ -148,7 +148,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record){
   if (record->event.pressed) {
-    if (biton32(layer_state) == CAPS && (keycode < KC_A || keycode > KC_Z) && (keycode != KC_UNDERSCORE)) {
+    if (biton32(layer_state) == CAPS && (keycode < KC_A || keycode > KC_Z) && (keycode != KC_UNDERSCORE && keycode != KC_BSPACE)) {
       layer_clear();
       return true;
     }

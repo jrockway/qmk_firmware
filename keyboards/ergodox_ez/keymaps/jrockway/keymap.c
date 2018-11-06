@@ -15,9 +15,9 @@ enum custom_keycodes {
 };
 
 #define BASE 0
-#define FKEYS 1
+#define LOWER 1
 #define RAISE 2
-#define LOWER 3
+#define FKEYS 3
 #define CAPS 7
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {

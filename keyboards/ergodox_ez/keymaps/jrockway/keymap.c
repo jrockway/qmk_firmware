@@ -83,11 +83,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,_______), // big
 
   [RAISE] = LAYOUT_ergodox(
-                       _______,_______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,
+                       RGB_TOG,_______,_______,_______,_______,_______,_______,
+                       RGB_MOD,RGB_RMOD,_______,_______,_______,_______,_______,
+                       RGB_HUI,RGB_HUD,_______,_______,_______,_______,
+                       RGB_SAI,RGB_SAD,_______,_______,_______,_______,_______,
+                       RGB_VAI,RGB_VAD,_______,_______,_______,
                        _______,_______,
                        _______,
                        _______,_______, // big
@@ -207,9 +207,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
   ergodox_led_all_set(15);
-#ifdef RGBLIGHT_COLOR_LAYER_0
-  rgblight_setrgb(RGBLIGHT_COLOR_LAYER_0);
-#endif
 };
 
 // Runs constantly in the background, in a loop.
@@ -228,6 +225,7 @@ uint32_t layer_state_set_user(uint32_t state) {
 
   uint8_t layer = biton32(state);
   if (layer == CAPS) {
+
     if (!caps_on) {
       caps_on = 1;
       add_key(KC_CAPS);

@@ -12,6 +12,7 @@ enum custom_keycodes {
   MAC_ERR, // "err "
   MAC_NIL, // nil
   MAC_ASSIGN, // := or !=
+  MAC_METAX, // M-x
 };
 
 #define BASE 0
@@ -27,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_TAB,KC_Q,KC_W,KC_E,KC_R,KC_T,KC_UNDERSCORE,
                        KC_LCTRL,KC_A,KC_S,KC_D,KC_F,KC_G,
                        KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,KC_B,KC_MINUS,
-                       KC_LGUI,KC_GRAVE,KC_DEL,SH_MON,MO(RAISE),
+                       KC_LGUI,KC_LEFT,KC_RIGHT,SH_MON,MO(RAISE),
                        KC_DEL,KC_INS,
                        KC_PGUP,
                        KC_LALT,KC_SPACE, // big thumb keys
@@ -37,9 +38,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_EQUAL,KC_Y,KC_U,KC_I,KC_O,KC_P,KC_BSLASH,
                        KC_H,KC_J,KC_K,KC_L,KC_SCOLON,KC_QUOTE,
                        KC_BSPACE,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_RSHIFT,
-                       MO(LOWER),MO(LOWER),KC_PLUS,KC_PSCREEN,KC_RCTL,
-                       KC_LEFT,KC_RIGHT,
-                       KC_UP,KC_DOWN,
+                       MO(LOWER),SH_MON,KC_DOWN,KC_UP,KC_RGUI,
+                       MAC_METAX,KC_INS,
+                       KC_PSCREEN,KC_RCTL,
                        KC_ENTER,KC_SPACE), // big thumb keys
 
   [FKEYS] = LAYOUT_ergodox(
@@ -66,8 +67,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,_______,_______,_______,_______,_______,TO(BASE),
                        KC_TAB,_______,_______,_______,_______,_______,KC_Y,
                        _______,_______,_______,_______,_______,_______,
-                       _______,_______,_______,_______,_______,_______,KC_H,
-                       _______,_______,KC_SPACE,KC_SPACE,KC_SPACE,
+                       _______,_______,_______,_______,_______,_______,KC_M,
+                       _______,_______,_______,KC_SPACE,KC_SPACE,
                        _______,_______,
                        _______,
                        _______,_______, // big
@@ -180,6 +181,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
       return false;
     case MAC_ERR:
       SEND_STRING("err ");
+      return false;
+    case MAC_METAX:
+      SEND_STRING(SS_LALT("x"));
       return false;
     case MAC_NE:
       SEND_STRING("!= ");

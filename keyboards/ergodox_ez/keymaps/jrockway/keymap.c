@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_TAB,KC_Q,KC_W,KC_E,KC_R,KC_T,KC_UNDERSCORE,
                        KC_LCTRL,KC_A,KC_S,KC_D,KC_F,KC_G,
                        KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,KC_B,KC_MINUS,
-                       KC_LGUI,KC_LEFT,KC_RIGHT,SH_MON,MO(RAISE),
+                       KC_LGUI,MAC_ASSIGN,MAC_METAX,SH_MON,MO(RAISE),
                        KC_DEL,KC_INS,
                        KC_PGUP,
                        KC_LALT,KC_SPACE, // big thumb keys
@@ -38,9 +38,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_EQUAL,KC_Y,KC_U,KC_I,KC_O,KC_P,KC_BSLASH,
                        KC_H,KC_J,KC_K,KC_L,KC_SCOLON,KC_QUOTE,
                        KC_BSPACE,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_RSHIFT,
-                       MO(LOWER),SH_MON,KC_UP,KC_DOWN,KC_RGUI,
+                       MO(LOWER),SH_MON,KC_HOME,KC_END,KC_RGUI,
                        KC_LEFT,KC_RIGHT,
-                       KC_INS,MAC_METAX,
+                       KC_UP,KC_DOWN,
                        KC_ENTER,KC_SPACE), // big thumb keys
 
   [FKEYS] = LAYOUT_ergodox(
@@ -94,10 +94,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,_______, // big
                        _______,
 
-                       _______,_______,_______,_______,_______,_______,_______,
+                       _______,_______,KC_AMPERSAND,_______,_______,_______,_______,
                        _______,KC_CIRCUMFLEX,KC_AMPERSAND,KC_ASTERISK,KC_GRAVE,KC_TILDE,KC_PIPE,
                                KC_PERCENT,KC_LPRN,KC_LCBR,KC_RCBR,KC_RPRN,KC_DOUBLE_QUOTE,
-                       _______,_______,KC_LBRACKET,KC_RBRACKET,_______,_______,_______,
+                       _______,_______,KC_LBRACKET,KC_RBRACKET,KC_RBRACKET,_______,_______,
                        TO(CAPS),_______,_______,_______,_______,
                        _______,_______,
                        _______,_______,

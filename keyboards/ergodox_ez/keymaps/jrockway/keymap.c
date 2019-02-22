@@ -28,14 +28,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_TAB,KC_Q,KC_W,KC_E,KC_R,KC_T,KC_UNDERSCORE,
                        KC_LCTRL,KC_A,KC_S,KC_D,KC_F,KC_G,
                        KC_LSHIFT,KC_Z,KC_X,KC_C,KC_V,KC_B,KC_MINUS,
-                       KC_LGUI,MAC_ASSIGN,MAC_METAX,SH_MON,MO(RAISE),
+                       KC_LGUI,KC_BSLASH,MAC_METAX,SH_MON,MO(RAISE),
                        KC_DEL,KC_INS,
                        KC_PGUP,
                        KC_LALT,KC_SPACE, // big thumb keys
                        KC_PGDOWN,
 
-                       KC_PAUSE,KC_6,KC_7,KC_8,KC_9,KC_0,MAC_ASSIGN,
-                       KC_EQUAL,KC_Y,KC_U,KC_I,KC_O,KC_P,KC_BSLASH,
+                       KC_PAUSE,KC_6,KC_7,KC_8,KC_9,KC_0,MAC_NE,
+                       KC_EQUAL,KC_Y,KC_U,KC_I,KC_O,KC_P,MAC_ASSIGN,
                        KC_H,KC_J,KC_K,KC_L,KC_SCOLON,KC_QUOTE,
                        KC_BSPACE,KC_N,KC_M,KC_COMMA,KC_DOT,KC_SLASH,KC_RSHIFT,
                        MO(LOWER),SH_MON,KC_HOME,KC_END,KC_RGUI,
@@ -173,20 +173,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
     }
     switch(keycode) {
     case MAC_ASSIGN:
-      if (get_mods() & (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))) {
-        SEND_STRING("!=");
-      } else {
-        SEND_STRING(":=");
-      }
+      SEND_STRING(":=");
+      return false;
+    case MAC_NE:
+      SEND_STRING("!= ");
       return false;
     case MAC_ERR:
       SEND_STRING("err ");
       return false;
     case MAC_METAX:
       SEND_STRING(SS_LALT("x"));
-      return false;
-    case MAC_NE:
-      SEND_STRING("!= ");
       return false;
     case MAC_NIL:
       SEND_STRING("nil {");

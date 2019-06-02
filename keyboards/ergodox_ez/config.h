@@ -40,6 +40,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_MAX_SPEED 7
 #define MOUSEKEY_WHEEL_DELAY 0
 
+/*
+ * The debounce filtering reports a key/switch change directly,
+ * without any extra delay. After that the debounce logic will filter
+ * all further changes, until the key/switch reports the same state for
+ * the given count of scans.
+ * So a perfect switch will get a short debounce period and
+ * a bad key will get a much longer debounce period.
+ * The result is an adaptive debouncing period for each switch.
+ *
+ * If you don't define it here, the matrix code will default to
+ * 5, which is now closer to 10ms, but still plenty according to
+ * manufacturer specs.
+ */
 #define DEBOUNCE 10
 
 #define TAPPING_TOGGLE 1
@@ -91,19 +104,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define RGBLIGHT_SLEEP
 
-/*
- * The debounce filtering reports a key/switch change directly,
- * without any extra delay. After that the debounce logic will filter
- * all further changes, until the key/switch reports the same state for
- * the given count of scans.
- * So a perfect switch will get a short debounce period and
- * a bad key will get a much longer debounce period.
- * The result is an adaptive debouncing period for each switch.
- *
- * If you don't define it here, the matrix code will default to
- * 5, which is now closer to 10ms, but still plenty according to
- * manufacturer specs.
- */
 #define USB_MAX_POWER_CONSUMPTION 500
 
 // RGB backlight

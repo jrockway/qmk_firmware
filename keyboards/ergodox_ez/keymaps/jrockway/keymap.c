@@ -13,6 +13,7 @@ enum custom_keycodes {
   MAC_NIL, // nil
   MAC_ASSIGN, // := or !=
   MAC_METAX, // M-x
+  MAC_SUPERJUMP, // shift and alt
 };
 
 #define BASE 0
@@ -66,9 +67,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [GAME] = LAYOUT_ergodox(
                        _______,_______,_______,_______,_______,_______,TO(BASE),
                        _______,_______,_______,_______,_______,_______,KC_Y,
-                       _______,_______,_______,_______,_______,_______,
+                       MAC_SUPERJUMP,_______,_______,_______,_______,_______,
                        _______,_______,_______,_______,_______,_______,KC_M,
-                       KC_LSHIFT,_______,_______,KC_SPACE,KC_SPACE,
+                       KC_LSHIFT,KC_SPACE,KC_SPACE,KC_SPACE,KC_SPACE,
                        _______,_______,
                        _______,
                        _______,_______, // big
@@ -166,6 +167,44 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record){
+  if (keycode == MAC_SUPERJUMP) {
+    int rand = TCNT0 % 3;
+    if (record->event.pressed) {
+      if (rand == 0) {
+        add_key(KC_LSHIFT);
+        add_key(KC_LALT);
+        send_keyboard_report();
+      } else if (rand == 1){
+        add_key(KC_LSHIFT);
+        send_keyboard_report();
+        add_key(KC_LALT);
+        send_keyboard_report();
+      } else {
+        add_key(KC_LALT);
+        send_keyboard_report();
+        add_key(KC_LSHIFT);
+        send_keyboard_report();
+      }
+    } else {
+      if (rand == 0) {
+        del_key(KC_LSHIFT);
+        del_key(KC_LALT);
+        send_keyboard_report();
+      } else if (rand == 1) {
+        del_key(KC_LSHIFT);
+        send_keyboard_report();
+        del_key(KC_LALT);
+        send_keyboard_report();
+      } else {
+        del_key(KC_LALT);
+        send_keyboard_report();
+        del_key(KC_LSHIFT);
+        send_keyboard_report();
+      }
+    }
+    return false;
+  }
+
   if (record->event.pressed) {
     if (biton32(layer_state) == CAPS && (keycode < KC_A || keycode > KC_Z) && (keycode != KC_UNDERSCORE && keycode != KC_BSPACE)) {
       layer_clear();
@@ -211,7 +250,6 @@ void matrix_init_user(void) {
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
-
 };
 
 uint8_t caps_on = 0;

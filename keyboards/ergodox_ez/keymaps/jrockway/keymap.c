@@ -9,8 +9,6 @@ enum custom_keycodes {
   FMT_DEC, // %d
   FMT_STR, // %s
   FMT_VAL, // %v
-  MAC_ERR, // "err "
-  MAC_NIL, // nil
   MAC_ASSIGN, // := or !=
   MAC_METAX, // M-x
   MAC_SUPERJUMP, // shift and alt
@@ -98,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,_______,KC_AMPERSAND,_______,_______,_______,_______,
                        _______,KC_CIRCUMFLEX,KC_AMPERSAND,KC_ASTERISK,KC_GRAVE,KC_TILDE,KC_PIPE,
                                KC_PERCENT,KC_LPRN,KC_LCBR,KC_RCBR,KC_RPRN,KC_DOUBLE_QUOTE,
-                       _______,KC_LBRACKET,KC_LBRACKET,KC_RBRACKET,KC_RBRACKET,_______,_______,
+                       _______,_______,KC_LBRACKET,KC_RBRACKET,_______,_______,KC_BSLASH,
                        TO(CAPS),_______,_______,_______,_______,
                        _______,_______,
                        _______,_______,
@@ -106,9 +104,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LOWER] = LAYOUT_ergodox(
                        _______,_______,_______,_______,_______,_______,_______,
-                       _______,KC_EXCLAIM,KC_AT,KC_HASH,KC_DOLLAR,MAC_NIL,_______,
+                       _______,KC_EXCLAIM,KC_AT,KC_HASH,KC_DOLLAR,_______,_______,
                        _______,FMT_QUOTE,FMT_STR,FMT_DEC,FMT_VAL,MAC_NE,
-                       _______,_______,_______,_______,_______,MAC_ERR,_______,
+                       _______,_______,_______,_______,FMT_VAL,_______,_______,
                        _______,_______,_______,_______,TO(CAPS),
                        _______,_______,
                        _______,
@@ -217,14 +215,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
     case MAC_NE:
       SEND_STRING("!= ");
       return false;
-    case MAC_ERR:
-      SEND_STRING("err ");
-      return false;
     case MAC_METAX:
       SEND_STRING(SS_LALT("x"));
-      return false;
-    case MAC_NIL:
-      SEND_STRING("nil {");
       return false;
     case FMT_QUOTE:
       SEND_STRING("%q");

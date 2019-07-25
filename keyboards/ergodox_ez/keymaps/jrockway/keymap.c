@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,_______,KC_AMPERSAND,_______,_______,_______,_______,
                        _______,KC_CIRCUMFLEX,KC_AMPERSAND,KC_ASTERISK,KC_GRAVE,KC_TILDE,KC_PIPE,
                                KC_PERCENT,KC_LPRN,KC_LCBR,KC_RCBR,KC_RPRN,KC_DOUBLE_QUOTE,
-                       _______,_______,KC_LBRACKET,KC_RBRACKET,_______,_______,KC_BSLASH,
+                       _______,_______,KC_LBRACKET,KC_RBRACKET,KC_RBRACKET,_______,KC_BSLASH,
                        TO(CAPS),_______,_______,_______,_______,
                        _______,_______,
                        _______,_______,

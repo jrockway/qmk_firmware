@@ -13,6 +13,7 @@ enum custom_keycodes {
     MAC_ASSIGN,           // := or !=
     MAC_METAX,            // M-x
     MAC_SUPERJUMP,        // shift and alt
+    MAC_SHIFTINSERT,      // shift + insert
 };
 
 #define BASE 0
@@ -86,8 +87,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [RAISE] = LAYOUT_ergodox(
                        RGB_TOG,_______,_______,_______,_______,_______,_______,
-                       RGB_MOD,RGB_RMOD,_______,_______,_______,_______,_______,
-                       RGB_HUI,RGB_HUD,_______,_______,_______,_______,
+                       RGB_MOD,RGB_RMOD,_______,_______,KC_WH_U,_______,_______,
+                       RGB_HUI,RGB_HUD,_______,_______,KC_WH_D,MAC_SHIFTINSERT,
                        RGB_SAI,RGB_SAD,_______,_______,_______,_______,_______,
                        RGB_VAI,RGB_VAD,_______,_______,_______,
                        _______,_______,
@@ -220,6 +221,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case MAC_METAX:
                 SEND_STRING(SS_LALT("x"));
+                return false;
+            case MAC_SHIFTINSERT:
+                SEND_STRING(SS_LSFT(SS_TAP(X_INS)));
                 return false;
             case FMT_QUOTE:
                 SEND_STRING("%q");

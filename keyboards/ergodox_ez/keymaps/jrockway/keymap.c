@@ -4,14 +4,14 @@
 #include "version.h"
 
 enum custom_keycodes {
-  MAC_NE = SAFE_RANGE, // "!= "
-  FMT_QUOTE, // %q
-  FMT_DEC, // %d
-  FMT_STR, // %s
-  FMT_VAL, // %v
-  MAC_ASSIGN, // := or !=
-  MAC_METAX, // M-x
-  MAC_SUPERJUMP, // shift and alt
+    MAC_NE = SAFE_RANGE,  // "!= "
+    FMT_QUOTE,            // %q
+    FMT_DEC,              // %d
+    FMT_STR,              // %s
+    FMT_VAL,              // %v
+    MAC_ASSIGN,           // := or !=
+    MAC_METAX,            // M-x
+    MAC_SUPERJUMP,        // shift and alt
 };
 
 #define BASE 0
@@ -21,6 +21,7 @@ enum custom_keycodes {
 #define GAME 4
 #define CAPS 7
 
+// clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_ergodox(
                        KC_ESCAPE,KC_1,KC_2,KC_3,KC_4,KC_5,OSL(FKEYS),
@@ -163,120 +164,117 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,_______,
                        _______,_______), // big
 */
+// clang-format on
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record){
-  if (keycode == MAC_SUPERJUMP) {
-    int rand = TCNT0 % 3;
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (keycode == MAC_SUPERJUMP) {
+        int rand = TCNT0 % 3;
+        if (record->event.pressed) {
+            if (rand == 0) {
+                add_key(KC_LSHIFT);
+                add_key(KC_LALT);
+                send_keyboard_report();
+            } else if (rand == 1) {
+                add_key(KC_LSHIFT);
+                send_keyboard_report();
+                add_key(KC_LALT);
+                send_keyboard_report();
+            } else {
+                add_key(KC_LALT);
+                send_keyboard_report();
+                add_key(KC_LSHIFT);
+                send_keyboard_report();
+            }
+        } else {
+            if (rand == 0) {
+                del_key(KC_LSHIFT);
+                del_key(KC_LALT);
+                send_keyboard_report();
+            } else if (rand == 1) {
+                del_key(KC_LSHIFT);
+                send_keyboard_report();
+                del_key(KC_LALT);
+                send_keyboard_report();
+            } else {
+                del_key(KC_LALT);
+                send_keyboard_report();
+                del_key(KC_LSHIFT);
+                send_keyboard_report();
+            }
+        }
+        return false;
+    }
+
     if (record->event.pressed) {
-      if (rand == 0) {
-        add_key(KC_LSHIFT);
-        add_key(KC_LALT);
-        send_keyboard_report();
-      } else if (rand == 1){
-        add_key(KC_LSHIFT);
-        send_keyboard_report();
-        add_key(KC_LALT);
-        send_keyboard_report();
-      } else {
-        add_key(KC_LALT);
-        send_keyboard_report();
-        add_key(KC_LSHIFT);
-        send_keyboard_report();
-      }
-    } else {
-      if (rand == 0) {
-        del_key(KC_LSHIFT);
-        del_key(KC_LALT);
-        send_keyboard_report();
-      } else if (rand == 1) {
-        del_key(KC_LSHIFT);
-        send_keyboard_report();
-        del_key(KC_LALT);
-        send_keyboard_report();
-      } else {
-        del_key(KC_LALT);
-        send_keyboard_report();
-        del_key(KC_LSHIFT);
-        send_keyboard_report();
-      }
+        if (biton32(layer_state) == CAPS && (keycode < KC_A || keycode > KC_Z) && (keycode != KC_UNDERSCORE && keycode != KC_BSPACE)) {
+            layer_clear();
+            return true;
+        }
+        switch (keycode) {
+            case MAC_ASSIGN:
+                SEND_STRING(":= ");
+                return false;
+            case MAC_NE:
+                SEND_STRING("!= ");
+                return false;
+            case MAC_METAX:
+                SEND_STRING(SS_LALT("x"));
+                return false;
+            case FMT_QUOTE:
+                SEND_STRING("%q");
+                return false;
+            case FMT_DEC:
+                SEND_STRING("%d");
+                return false;
+            case FMT_STR:
+                SEND_STRING("%s");
+                return false;
+            case FMT_VAL:
+                SEND_STRING("%v");
+                return false;
+        }
     }
-    return false;
-  }
-
-  if (record->event.pressed) {
-    if (biton32(layer_state) == CAPS && (keycode < KC_A || keycode > KC_Z) && (keycode != KC_UNDERSCORE && keycode != KC_BSPACE)) {
-      layer_clear();
-      return true;
-    }
-    switch(keycode) {
-    case MAC_ASSIGN:
-      SEND_STRING(":= ");
-      return false;
-    case MAC_NE:
-      SEND_STRING("!= ");
-      return false;
-    case MAC_METAX:
-      SEND_STRING(SS_LALT("x"));
-      return false;
-    case FMT_QUOTE:
-      SEND_STRING("%q");
-      return false;
-    case FMT_DEC:
-      SEND_STRING("%d");
-      return false;
-    case FMT_STR:
-      SEND_STRING("%s");
-      return false;
-    case FMT_VAL:
-      SEND_STRING("%v");
-      return false;
-    }
-  }
-  return true;
+    return true;
 }
 
 // Runs just one time when the keyboard initializes.
-void matrix_init_user(void) {
-  ergodox_led_all_set(15);
-};
+void matrix_init_user(void) { ergodox_led_all_set(15); };
 
 // Runs constantly in the background, in a loop.
-void matrix_scan_user(void) {
-};
+void matrix_scan_user(void){};
 
 uint8_t caps_on = 0;
 
 // Runs whenever there is a layer state change.
 uint32_t layer_state_set_user(uint32_t state) {
-  ergodox_board_led_off();
-  ergodox_right_led_1_off();
-  ergodox_right_led_2_off();
-  ergodox_right_led_3_off();
+    ergodox_board_led_off();
+    ergodox_right_led_1_off();
+    ergodox_right_led_2_off();
+    ergodox_right_led_3_off();
 
-  uint8_t layer = biton32(state);
-  if (layer == CAPS) {
-
-    if (!caps_on) {
-      caps_on = 1;
-      add_key(KC_CAPS);
-      send_keyboard_report();
+    uint8_t layer = biton32(state);
+    if (layer == CAPS) {
+        if (!caps_on) {
+            caps_on = 1;
+            add_key(KC_CAPS);
+            send_keyboard_report();
+        }
+    } else {
+        if (caps_on) {
+            caps_on = 0;
+            add_key(KC_CAPS);
+            send_keyboard_report();
+        }
     }
-  } else {
-    if (caps_on) {
-      caps_on = 0;
-      add_key(KC_CAPS);
-      send_keyboard_report();
-    }
-  }
 
-  if (layer & 1) {
-    ergodox_right_led_3_on();
-  }
-  if (layer & 2) {
-    ergodox_right_led_2_on();
-  }
-  if (layer & 4) {
-    ergodox_right_led_1_on();
-  }
-  return state;
+    if (layer & 1) {
+        ergodox_right_led_3_on();
+    }
+    if (layer & 2) {
+        ergodox_right_led_2_on();
+    }
+    if (layer & 4) {
+        ergodox_right_led_1_on();
+    }
+    return state;
 };

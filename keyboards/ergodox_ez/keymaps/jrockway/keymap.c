@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_ENTER,KC_SPACE), // big thumb keys
 
   [FKEYS] = LAYOUT_ergodox(
-                       _______,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,TO(GAME),
+                       RESET,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,TO(GAME),
                        _______,_______,_______,_______,_______,_______,KC_NUMLOCK,
                        _______,_______,_______,_______,_______,_______,
                        _______,_______,_______,_______,_______,_______,_______,

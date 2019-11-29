@@ -9,6 +9,7 @@ enum custom_keycodes {
     FMT_DEC,              // %d
     FMT_STR,              // %s
     FMT_VAL,              // %v
+    FMT_ERR,              // %w
     MAC_ASSIGN,           // := or !=
     MAC_METAX,            // M-x
     MAC_SUPERJUMP,        // shift and alt
@@ -106,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LOWER] = LAYOUT_ergodox(
                        _______,_______,_______,_______,_______,_______,_______,
                        _______,KC_EXCLAIM,KC_AT,KC_HASH,KC_DOLLAR,_______,_______,
-                       _______,FMT_QUOTE,FMT_STR,FMT_DEC,FMT_VAL,MAC_NE,
+                       _______,FMT_QUOTE,FMT_STR,FMT_DEC,FMT_VAL,FMT_ERR,
                        _______,_______,_______,_______,FMT_VAL,_______,_______,
                        _______,_______,_______,_______,_______,
                        _______,_______,
@@ -118,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        _______,_______,KC_7,KC_8,KC_9,KC_MINUS,_______,
                                KC_BSPACE,KC_4,KC_5,KC_6,KC_PLUS,_______,
                        _______,KC_BSPACE,KC_1,KC_2,KC_3,KC_PLUS,_______,
-                                 _______,KC_0,KC_DOT,KC_ENTER,_______,
+                               _______,KC_0,KC_DOT,KC_ENTER,_______,
                        _______,_______,
                        _______,_______,
                        _______,_______), // big
@@ -231,6 +232,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case FMT_VAL:
                 SEND_STRING("%v");
+                return false;
+            case FMT_ERR:
+                SEND_STRING("%w");
                 return false;
         }
     }

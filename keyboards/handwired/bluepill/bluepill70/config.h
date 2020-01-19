@@ -16,8 +16,8 @@
 
 /* key matrix size */
 //  Modified by Xydane
-#define MATRIX_ROWS 6
-#define MATRIX_COLS 15
+#define MATRIX_ROWS 4
+#define MATRIX_COLS 4
 #define DIODE_DIRECTION COL2ROW
 
 // Iso fix for Space Cadet, comment for ANSI layouts
